@@ -1,2 +1,6 @@
 # CE2811-2122-SMT1-KEL6-BOT
-PROJECT "MENGHIDUPKAN LED DENGAN MUNGGUNAKAN BOT TELEGRAM DENGAN ESP32"
+Kelompok 6 :
+  Azma Yusuf - 2022017
+  Andika Zahrah Ramadhanti - 2022029
+  Budi Prasetio - 2022015
+  Moehammad Farhan - 2022030
