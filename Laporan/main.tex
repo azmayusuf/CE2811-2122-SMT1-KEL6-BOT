@@ -1,0 +1,184 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphicx}
+
+
+% path gambar
+\graphicspath{{./picture/}}
+
+% JUDUL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Mengirim Data Signal Strength Hasil Pemindaian Jaringan WiFi Ke Telegram Bot Dengan Menggunakan NodeMCU ESP32}
+
+% PENULIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Azma Yusuf\IEEEauthorrefmark{1},Andika Zahra Ramadhanti\IEEEauthorrefmark{2},Budi Prasetio\IEEEauthorrefmark{3}, Mohammad Farhan\IEEEauthorrefmark{4}\\
+\textit{Fakultas Teknologi Informasi}\\
+\textit{Teknik Komputer}\\
+\textit{Institut Teknologi Batam}\\
+Batam, Indonesia\\
+Email: \{\IEEEauthorrefmark{1}2022017,\IEEEauthorrefmark{2}2022029,\IEEEauthorrefmark{3}2022015,\IEEEauthorrefmark{4}2022030\}@student.iteba.ac.id}
+
+\begin{document}
+% untuk mengeluarkan judul dan author
+\maketitle
+% ABSTRAK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+    Dalam sistem untuk komunikasi data berbasis nirkabel,
+    Karena keunggulan mobilitas dan kecepatan transfer data, banyak pengguna memilih menggunakan WiFi. kekuatan sinyal.
+    Dalam layanan komunikasi data, kekuatan merupakan faktor utama.
+    Ini membuat kualitas dan kekuatan sinyal jaringan WiFi sangat penting.
+    memiliki reputasi. perangkat untuk pemindaian jaringan WiFi.
+    Kekuatan sinyal setiap jaringan dapat ditentukan oleh Nodemcu Esp32, yang kemudian dapat memindai dan mengukur data.
+    Agar dapat diketahui hasilnya, kekuatan sinyal dikirimkan ke Bot Telegram menggunakan nodemcu Esp32.
+\end{abstract}
+\vspace{0.2cm}
+% kata kunci %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{IEEEkeywords}
+    \emph{WiFi}, \emph{signal strength}, \emph{NodeMCU ESP32}, \emph{Bot Telegram}
+\end{IEEEkeywords}
+% pendahuluan %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pendahuluan}
+Mengirim data signal strength hasil pemindaian jaringan WiFi ke Telegram bot merupakan salah satu aplikasi yang dapat dilakukan dengan menggunakan NodeMCU ESP32, yaitu sebuah modul mikrokontroler yang dapat terhubung ke internet melalui jaringan WiFi. NodeMCU ESP32 memiliki fitur untuk melakukan pemindaian terhadap jaringan WiFi yang tersedia, sehingga dapat mengumpulkan informasi mengenai signal strength dari jaringan tersebut. Dengan menggunakan Telegram bot, kita dapat dengan mudah mengirimkan data signal strength ke akun Telegram kita, sehingga dapat dilakukan monitoring secara real-time. Aplikasi ini dapat berguna dalam berbagai macam situasi, seperti mengetahui kualitas sinyal WiFi di suatu lokasi, atau memantau kondisi jaringan WiFi yang ada. Dengan menggunakan NodeMCU ESP32 dan Telegram bot, proses pengiriman data signal strength menjadi lebih mudah dan efisien.
+
+\section{Penjelasan}
+\subsection{Bot Telegram}
+\vspace{0.2cm}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.2\textwidth]{botfather.jpg}
+    \caption{BotFather Telegram}
+\end{figure}
+
+Telegram bot adalah sebuah aplikasi yang dapat diintegrasikan ke dalam platform Telegram untuk melakukan berbagai macam fungsi, seperti mengirim notifikasi, mengatur jadwal, atau mengelola data. Bot Telegram bisa dibuat oleh siapapun yang memahami bagaimana cara membuatnya, dan bisa digunakan oleh siapapun yang memiliki akun Telegram.
+
+Bot Telegram dapat diintegrasikan ke dalam grup atau obrolan pribadi di Telegram, sehingga bisa digunakan untuk berkomunikasi dengan anggota grup atau orang lain yang tergabung dalam obrolan tersebut. Bot Telegram juga bisa digunakan untuk mengirim pesan secara otomatis ke akun Telegram yang terdaftar, sehingga bisa digunakan sebagai sistem notifikasi.
+
+Bot Telegram juga bisa dikonfigurasi untuk menjalankan tugas-tugas tertentu berdasarkan perintah yang diberikan oleh pengguna. Misalnya, bot Telegram bisa dikonfigurasi untuk mengelola daftar tugas atau mengatur jadwal pengguna, atau bahkan untuk mengontrol perangkat IoT (Internet of Things) yang terhubung ke internet.
+
+Dengan menggunakan bot Telegram, kita bisa dengan mudah mengelola dan mengautomasasi berbagai macam proses melalui aplikasi Telegram yang kita gunakan. Bot Telegram bisa menjadi solusi yang efisien untuk berbagai macam kebutuhan, terutama jika kita ingin mengelola proses secara real-time melalui aplikasi chat yang sudah terinstall di smartphone kita.
+
+\subsection{NodeMCU}
+\vspace{0.2cm}
+NodeMCU ESP32 adalah sebuah modul mikrokontroler yang menggunakan chipset ESP32 milik perusahaan Espressif Systems. Modul ini memiliki beragam fitur yang membuatnya cocok untuk berbagai macam aplikasi, seperti internet of things (IoT), pemantauan, dan kontrol.
+NodeMCU ESP32 menggunakan sistem operasi berbasis microcontroller yang memungkinkan modul ini untuk terhubung ke internet melalui jaringan WiFi. Modul ini juga dilengkapi dengan modul Bluetooth, sehingga bisa terhubung dengan perangkat lain yang menggunakan teknologi Bluetooth.
+NodeMCU ESP32 memiliki banyak pin yang dapat digunakan untuk menghubungkan berbagai macam perangkat eksternal, seperti sensor, modul LCD, atau modul relai. Modul ini juga dilengkapi dengan memori flash yang cukup besar, sehingga bisa menyimpan program atau data yang diperlukan untuk menjalankan aplikasi yang diinginkan.
+Dengan menggunakan NodeMCU ESP32, kita bisa dengan mudah mengintegrasikan berbagai macam perangkat ke dalam jaringan IoT (Internet of Things) yang kita buat. Modul ini juga mudah diprogram dan bisa digunakan untuk berbagai macam aplikasi, sehingga menjadi pilihan yang populer bagi para pengguna yang ingin mengembangkan proyek-proyek berbasis IoT.
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth]{nodemcu.jpg}
+        \caption{GPIO NodeMCU ESP32}
+\end{figure}
+    NodeMCU berfungsi sama seperti Arduino, walaupun dengan IC, GPIO, dan Bahasa program yang digunakan berbeda tetapi tujuannya sama yaitu untuk mengontrol suatu system, dan kelebihannya dibandingkan arduino yaitu telah include dengan module Wifi yang tertanam pada systemnya.
+
+
+    \section{Hasil dan Pembahasan}
+    \subsection{Flowcart Bot Telegram}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.06\textwidth]{telegrambot.png}
+        \caption{Flowchart Bot Telegram}
+    \end{figure}
+    \vspace{2cm}
+    
+    \subsection{Flowchart NodeMCU}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.2\textwidth]{telegrambot.drawio.png}
+        \caption{Flowchart NodeMCU}
+    \end{figure}
+    \vspace{1cm}
+\subsection{Cara Kerja Program}
+Langkah-langkah untuk mengembangkan program tercantum di bawah ini. Inisialisasi CTBot setelah memberikan token atau bot API. h perpustakaan. Untuk mengirim data NodeMCU ke Telegram Bot API, buat sebuah fungsi.
+Cara Menggunakan Grup Bot Telegram 8 Tekan tombol /start atau ketik /start ke bilah alamat bot telegram. Daftar perintah yang dapat digunakan oleh bot kemudian akan dikirimkan melalui pesan.
+Untuk mulai memindai dan menentukan kekuatan sinyal WiFi, ketikkan perintah /scan.
+Setelah itu, NodeMCU akan mulai memindai dan membaca data, yang kemudian akan dikirim ke API bot Telegram.
+    \subsection{Hasil Pengukuran}
+    \subsubsection{Hasil Pengukuran Di Dalam Ruangan}
+    Berikut ini perhitungan menggunakan persamaan RSSI 
+    pada jaringan wireless yang ada disekitar rumah terhadap pengahalang
+ 
+    \begin{table}[htbp]
+        \caption{Table Analisis Pengukuran RSSI}
+        \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+        \textbf{SSID}&\textbf{\textit{RSSI}}& \textbf{\textit{Penerima Sinyal}} \\
+        \hline
+        AY 6 & -37 dBm & 100  \\
+        \hline
+        Azmi & -51 dBm & 98  \\
+        \hline
+        Bramantya & -92 dBm & 16   \\
+        \hline
+        \multicolumn{3}{l}{$^{\mathrm{1}}$Hasil scanning Nodemcu Ke Telegram Bot}
+        \end{tabular}
+        \label{tab1}
+        \end{center}
+        \end{table}
+
+        \subsubsection{Hasil Pengukuran Diluar rumah}
+        Berikut ini perhitungan menggunakan persamaan RSSI 
+    pada jaringan wireless yang ada diluar rumah
+     terhadap pengahalang seperti pepohonan dan intervensi objek lain nya dengan studi kasus dimana dalam 1 access
+     point dibagi menjadi beberapa SSID pada tabel berikut ini : 
+    
+     \begin{table}[htbp]
+        \caption{Table Analisis Pengukuran RSSI}
+        \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+        \textbf{SSID} &  \textbf{\textit{Penerimaan Sinyal}}& \textbf{\textit{RSSI}} \\
+        \hline
+        AY  & 62 & -69 dBm   \\
+        \hline
+        Azmi & 58 & -71 dBm   \\
+        \hline
+        Dayat & 26 & -87 dBm   \\
+        \hline
+        210701  & 36 & -82 dBm   \\
+        \hline
+        NAURA ASSYFA  & 20 & -90 dBm   \\
+        \hline
+        Cahya & 18 & -91 dBm   \\
+        \hline
+        Bramantya  & 18 & -91 dBm   \\
+        \hline
+        220601  & 14 & -93 dBm   \\
+        \hline
+        Test  & 14 & -93 dBm   \\
+        \hline
+        210802  & 14 & -93 dBm   \\
+        \hline
+    
+        \multicolumn{3}{l}{$^{\mathrm{2}}$Hasil scanning Nodemcu Ke Telegram Bot}
+        \end{tabular}
+        \label{tab2}
+        \end{center}
+        \end{table}
+    
+
+        \subsection{Percobaan Telegram Bot}
+        Berikut ini adalah hasil percobaan menggunakan telegram bot.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.4\textwidth]{2.png}
+            \caption{Percobaan Scanning Wifi Di Dalam Ruangan}
+        \end{figure}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.4\textwidth]{luarrumah.png}
+            \caption{Percobaan Scanning Wifi Di Luar Ruangan}
+        \end{figure}
+    
+        \subsection{Pengaruh Besar nya Kekuatan sinyal}
+Selain dipengaruhi oleh jarak antara pemancar dan penerima, fading dan shadowing pada lokasi tertentu juga berdampak signifikan terhadap kekuatan sinyal RSSI yang diterima penerima. Hal ini dapat diamati pada setting penelitian dimana lingkungan berisi berbagai fitur, seperti dinding, lemari, meja, dan fitur lain di dalam ruangan, yang dapat menyebabkan pelemahan sinyal, defleksi sinyal, dan pantulan sinyal, sehingga terjadi penurunan sinyal. kekuatan. dipancarkan oleh pemancar ke penerima, meskipun jarak antara mereka pendek, tetapi terhalang oleh properti terdekat, kekuatan sinyal akan berkurang dan bahkan mungkin sama dengan kekuatan sinyal pada jarak jauh antara pemancar dan penerima, tetapi tidak ada penghalang di sana.
+
+\section{Kesimpulan}
+
+Berdasarkan hasil analisa simulasi \textit{Scanning} kekuatan sinyal wifi di Rumah Saya, penulis membuat beberapa kesimpulan yaitu :
+\begin{enumerate}
+    \item Proses \textit{Wifi Signal Analysis} yang sudah dilakukan didalam dan diluar rumah  menggunakan 2 \textit{NodeMcu Esp-32} dengan notifikasi bot \textit{Telegram} dapat digunakan untuk melakukan sebuah perintah yang dapat mengetahui kekuatan sinyal jaringan (dBm)
+    di setiap SSID wifi yang berada di rumah dan sekitarnya.
+    \item Hasil pengujian dampak perangkat elektronik menunjukkan bahwa kelas kekuatan sinyal sangat baik dan tidak berdampak pada pelemahan sinyal WiFi.
+   \item Beberapa hal, termasuk pengguna yang melampaui jangkauan kemampuan titik akses, dapat mengakibatkan koneksi tidak stabil yang sering kali terputus dan terkadang tanpa sinyal.
+\end{enumerate}
+
+\end{document}
