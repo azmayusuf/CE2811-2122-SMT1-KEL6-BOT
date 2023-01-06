@@ -3,4 +3,4 @@ Kelompok 6 :
   Azma Yusuf - 2022017
   Andika Zahrah Ramadhanti - 2022029
   Budi Prasetio - 2022015
-  Moehammad Farhan - 2022030
+  Mohammad Farhan - 2022030
